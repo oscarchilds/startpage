@@ -1,11 +1,34 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Search from './components/Search.vue';
+import type { Site } from './types';
+
+const sites: Site[] = [
+  {
+    name: 'GitHub',
+    url: 'https://github.com'
+  }
+]
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <div class="container">
+    <Search :sites="sites" />
+  </div>
 </template>
 
-<style scoped></style>
+<style>
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+</style>
+
+<style scoped>
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #262a33;
+}
+</style>
