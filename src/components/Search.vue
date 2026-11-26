@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Spinner from './Spinner.vue';
 import type { Site } from '@/types';
-import { computed, onMounted, ref, useTemplateRef } from 'vue';
+import { computed, onMounted, ref, shallowRef, useTemplateRef } from 'vue';
 
 const { sites } = defineProps<{
   sites: Site[]
@@ -12,7 +12,7 @@ const textInput = useTemplateRef('text-input')
 const selectedIndex = ref(0)
 const isLoading = ref(false)
 
-const currentSites = ref(sites)
+const currentSites = shallowRef(sites)
 
 const filteredSites = computed(() => {
   return currentSites.value

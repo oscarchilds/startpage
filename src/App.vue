@@ -1,13 +1,8 @@
 <script setup lang="ts">
 import Search from './components/Search.vue';
-import type { Site } from './types';
+import { getSitesFromStore } from './functions/get-store';
 
-const sites: Site[] = [
-  {
-    name: 'GitHub',
-    url: 'https://github.com'
-  }
-]
+const sites = getSitesFromStore()
 </script>
 
 <template>
