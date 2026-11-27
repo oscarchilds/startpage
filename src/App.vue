@@ -1,13 +1,18 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import Search from './components/Search.vue';
-import { getSitesFromStore } from './functions/get-store';
+import Edit from './components/Edit.vue';
 
-const sites = getSitesFromStore()
+const editMode = ref(false)
 </script>
 
 <template>
   <div class="container">
-    <Search :sites="sites" />
+    <Edit v-if="editMode" @close="editMode = false" />
+    <template v-else>
+      <Search />
+      <button @click="editMode = true">Edit Mode</button>
+    </template>
   </div>
 </template>
 
@@ -25,5 +30,11 @@ body {
   align-items: center;
   height: 100vh;
   background-color: #262a33;
+}
+
+button {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
 }
 </style>

@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import Spinner from './Spinner.vue';
-import type { Site } from '@/types';
+import { getSitesFromStore } from '@/functions/store';
 import { computed, onMounted, ref, shallowRef, useTemplateRef } from 'vue';
 
-const { sites } = defineProps<{
-  sites: Site[]
-}>()
+const sites = getSitesFromStore()
 
 const text = ref('')
 const textInput = useTemplateRef('text-input')

@@ -11,23 +11,11 @@ const siteZod: z.ZodType<Site> = z.object({
 
 const localStoreKey = 'startpage-sites'
 
-const tempLocalStoreData: Site[] = [
-  {
-    name: 'GitHub',
-    url: 'https://github.com',
-    children: [
-      {
-        name: 'startpage',
-        url: 'https://github.com/oscarchilds/startpage'
-      }
-    ]
-  }
-]
-
-localStorage.setItem(localStoreKey, JSON.stringify(tempLocalStoreData))
+export const getDataFromStore = (): string | null => localStorage.getItem(localStoreKey)
+export const saveDataToStore = (value: string) => localStorage.setItem(localStoreKey, value)
 
 export const getSitesFromStore = (): Site[] => {
-  const result = localStorage.getItem(localStoreKey)
+  const result = getDataFromStore()
   if (!result) return []
 
   const resultAsJson = JSON.parse(result)
