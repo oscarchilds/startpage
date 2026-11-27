@@ -2,9 +2,17 @@
 import { getDataFromStore, saveDataToStore } from '@/functions/store';
 import { ref } from 'vue';
 
-const data = getDataFromStore() ?? ""
+const formatJson = (raw: string) => {
+  try {
+    return JSON.stringify(JSON.parse(raw), null, 2)
+  } catch {
+    return raw
+  }
+}
 
-const textInput = ref(data)
+const dataFromStore = getDataFromStore() ?? ""
+const dataFromStoreFormatted = formatJson(dataFromStore)
+const textInput = ref(dataFromStoreFormatted)
 
 const save = () => {
   saveDataToStore(textInput.value)
